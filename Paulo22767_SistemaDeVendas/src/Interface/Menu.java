@@ -5,6 +5,9 @@
  */
 package Interface;
 
+import Classe.Fornecedor;
+import java.time.Clock;
+
 /**
  *
  * @author Pflausino
@@ -55,16 +58,46 @@ public class Menu extends javax.swing.JFrame {
         setResizable(false);
 
         btnVenda.setText("Venda");
+        btnVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendaActionPerformed(evt);
+            }
+        });
 
         btnCompra.setText("Compra");
+        btnCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompraActionPerformed(evt);
+            }
+        });
 
         btnProduto.setText("Produto");
+        btnProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProdutoActionPerformed(evt);
+            }
+        });
 
         btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         btnFornecedor.setText("Fornecedor");
+        btnFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFornecedorActionPerformed(evt);
+            }
+        });
 
         btnCliente.setText("Cliente");
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClienteActionPerformed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/java.jpg"))); // NOI18N
 
@@ -187,6 +220,47 @@ public class Menu extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void btnVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaActionPerformed
+        // TODO add your handling code here:
+        
+        LancamentoVenda lancamentovenda = new LancamentoVenda();
+        lancamentovenda.setVisible(true);
+    }//GEN-LAST:event_btnVendaActionPerformed
+
+    private void btnCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraActionPerformed
+        // TODO add your handling code here:
+        
+        LancamentoCompra lancamentocompra = new LancamentoCompra();
+        lancamentocompra.setVisible(true);
+    }//GEN-LAST:event_btnCompraActionPerformed
+
+    private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
+        // TODO add your handling code here:
+        
+        CadastroProduto cadastroproduto = new CadastroProduto();
+        cadastroproduto.setVisible(true);
+    }//GEN-LAST:event_btnProdutoActionPerformed
+
+    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
+        // TODO add your handling code here:
+        
+        CadastroCliente cadastrocliente = new CadastroCliente();
+        cadastrocliente.setVisible(true);
+    }//GEN-LAST:event_btnClienteActionPerformed
+
+    private void btnFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFornecedorActionPerformed
+        // TODO add your handling code here:
+        
+        CadastroFornecedor cadastrofornecedor = new CadastroFornecedor();
+        cadastrofornecedor.setVisible(true);
+    }//GEN-LAST:event_btnFornecedorActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        // TODO add your handling code here:
+        
+        System.exit(0);
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
