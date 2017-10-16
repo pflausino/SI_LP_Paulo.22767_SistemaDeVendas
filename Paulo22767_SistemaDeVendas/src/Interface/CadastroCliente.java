@@ -62,7 +62,12 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         btnSave.setText("Save");
 
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Cancel");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnErase.setText("Erase");
 
@@ -163,6 +168,10 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments

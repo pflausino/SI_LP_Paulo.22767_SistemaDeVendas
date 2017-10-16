@@ -102,7 +102,7 @@ public class CadastroProduto extends javax.swing.JFrame {
 
         btnErase.setText("Erase");
 
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Cancel");
 
         btnSave.setText("Save");
 

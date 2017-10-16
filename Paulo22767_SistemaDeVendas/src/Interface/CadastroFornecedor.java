@@ -93,7 +93,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
 
         btnSave.setText("Save");
 
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Cancel");
 
         btnErase.setText("Erase");
 
