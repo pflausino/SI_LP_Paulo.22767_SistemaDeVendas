@@ -5,17 +5,24 @@
  */
 package Interface;
 
+import javax.swing.JOptionPane;
+import Classe.Fornecedor;
+import Database.fornecedorData;
 /**
  *
  * @author Pflausino
  */
 public class CadastroFornecedor extends javax.swing.JFrame {
-
+    
+    //Criando Objeto
+    private fornecedorData DAO;
+    private Fornecedor objFor;
     /**
      * Creates new form CadastroFornecedor
      */
     public CadastroFornecedor() {
         initComponents();
+        DAO = new fornecedorData();
     }
 
     /**
@@ -60,6 +67,10 @@ public class CadastroFornecedor extends javax.swing.JFrame {
 
         jLabel2.setText("CNPJ");
 
+        txtName.setEnabled(false);
+
+        txtCnpj.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -90,12 +101,30 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         );
 
         btnNew.setText("New");
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewActionPerformed(evt);
+            }
+        });
 
         btnSave.setText("Save");
+        btnSave.setEnabled(false);
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancel");
+        btnCancelar.setEnabled(false);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnErase.setText("Erase");
+        btnErase.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,6 +163,53 @@ public class CadastroFornecedor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+        
+        clearField();
+        //preparing Interface 
+        btnNew.setEnabled(false);
+        btnErase.setEnabled(false);
+        btnCancelar.setEnabled(true);
+        btnSave.setEnabled(true);
+        txtCnpj.setEnabled(true);
+        txtName.setEnabled(true);
+        
+    }//GEN-LAST:event_btnNewActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+
+        clearField();
+        //preparing Interface 
+        btnNew.setEnabled(true);
+        btnErase.setEnabled(false);
+        btnCancelar.setEnabled(false);
+        btnSave.setEnabled(false);
+        txtCnpj.setEnabled(false);
+        txtName.setEnabled(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        
+        try {
+            if (testField()) {
+                if (toObject()) {
+                    if(DAO.include(objFor)){
+                        JOptionPane.showMessageDialog(this, "Salvo Com Sucesso");
+                        btnCancelarActionPerformed(evt);
+                    }else
+                        JOptionPane.showMessageDialog(this, "Nao foi possivel inserir o registro");
+                }
+
+            }
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(this, "Erro: "+ error.getMessage());
+
+        }
+            
+
+        
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,4 +259,37 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JTextField txtCnpj;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
+
+    //Métodos
+    
+    public void  clearField(){
+        
+        txtCnpj.setText("");
+        txtName.setText("");
+    }
+    
+    public boolean testField(){
+        
+        if (txtName.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencha o campo Name");
+            txtName.requestFocus();
+            return false;
+        }
+        if (txtCnpj.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencha o campo cnpj");
+            txtCnpj.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+    
+    //Preencher Objeto
+    public boolean toObject(){
+        objFor = new Fornecedor();
+        objFor.setNameFornecedor(txtName.getText());
+        objFor.setCnpjFornecedor(txtCnpj.getText());
+        return true;
+    }
+    
 }

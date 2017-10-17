@@ -10,6 +10,15 @@ public class Fornecedor {
     private String nameFornecedor;
     private String cnpjFornecedor;
     
+    
+    public Fornecedor(int codigoFornecedor, String nameFornecedor, String cnpjFornecedor) {
+    this.codigoFornecedor = codigoFornecedor;
+    this.nameFornecedor = nameFornecedor;
+    this.cnpjFornecedor = cnpjFornecedor;
+    }
+
+    public Fornecedor() {
+    }
     //GET
 
     public int getCodigoFornecedor() {
