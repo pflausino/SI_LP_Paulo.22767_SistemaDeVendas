@@ -211,7 +211,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                     if(DAO.include(objFor)){
                         JOptionPane.showMessageDialog(this, "Salvo Com Sucesso");
                         btnCancelarActionPerformed(evt);
-                        jtableFornecedor.fireTableDataChanged();
                     }else
                         JOptionPane.showMessageDialog(this, "Nao foi possivel inserir o registro");
                 }
