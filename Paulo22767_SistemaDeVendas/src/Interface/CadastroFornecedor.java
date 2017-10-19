@@ -33,9 +33,13 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
+        dbsistemavendaPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("dbsistemavendaPU").createEntityManager();
+        tbfornecedorQuery = java.beans.Beans.isDesignTime() ? null : dbsistemavendaPUEntityManager.createQuery("SELECT t FROM Tbfornecedor t");
+        tbfornecedorList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : tbfornecedorQuery.getResultList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jtableFornecedor = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -48,18 +52,26 @@ public class CadastroFornecedor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tbfornecedorList, jtableFornecedor);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${codigo}"));
+        columnBinding.setColumnName("Codigo");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
+        columnBinding.setColumnName("Nome");
+        columnBinding.setColumnClass(String.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${cnpj}"));
+        columnBinding.setColumnName("Cnpj");
+        columnBinding.setColumnClass(String.class);
+        columnBinding.setEditable(false);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
+        jScrollPane2.setViewportView(jtableFornecedor);
+        if (jtableFornecedor.getColumnModel().getColumnCount() > 0) {
+            jtableFornecedor.getColumnModel().getColumn(0).setResizable(false);
+            jtableFornecedor.getColumnModel().getColumn(0).setPreferredWidth(1);
+        }
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Form"));
 
@@ -161,6 +173,8 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -197,6 +211,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                     if(DAO.include(objFor)){
                         JOptionPane.showMessageDialog(this, "Salvo Com Sucesso");
                         btnCancelarActionPerformed(evt);
+                        jtableFornecedor.fireTableDataChanged();
                     }else
                         JOptionPane.showMessageDialog(this, "Nao foi possivel inserir o registro");
                 }
@@ -251,13 +266,17 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JButton btnErase;
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnSave;
+    private javax.persistence.EntityManager dbsistemavendaPUEntityManager;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jtableFornecedor;
+    private java.util.List<Classe.Tbfornecedor> tbfornecedorList;
+    private javax.persistence.Query tbfornecedorQuery;
     private javax.swing.JTextField txtCnpj;
     private javax.swing.JTextField txtName;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
     //Métodos

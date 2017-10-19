@@ -14,7 +14,7 @@ public class SqlServerConnection {
     private Connection conexao;
    public SqlServerConnection() throws Exception{
        Class.forName("net.sourceforge.jtds.jdbc.Driver");
-       String url = "jdbc:jtds:sqlserver://LOGAN-WOLVERINE:1433/dbsistemavenda";
+       String url = "jdbc:jtds:sqlserver://localhost:1433/dbsistemavenda";
        conexao = DriverManager.getConnection(url,"pflausino","123");
    }
    public Connection getConexao(){
