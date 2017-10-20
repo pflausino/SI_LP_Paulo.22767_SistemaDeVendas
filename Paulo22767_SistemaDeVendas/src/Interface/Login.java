@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -53,6 +54,11 @@ public class Login extends javax.swing.JFrame {
         });
 
         txtKey.setText("jPasswordField1");
+        txtKey.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtKeyKeyPressed(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/java.jpg"))); // NOI18N
 
@@ -115,9 +121,17 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    public boolean checkLogin(String login, String senha){
+        
+        return login.equals("paulo") && senha.equals("1234");
+    }
+    
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
 
-        if(txtLogin.getText().equals("paulo") && txtKey.getText().equals("1234")){
+        //O getpassword deve chamar uma classe rapper
+        if(checkLogin(txtLogin.getText(), new String (txtKey.getPassword()))){
             
             JOptionPane.showMessageDialog(null, "Welcome");
         }else{
@@ -125,6 +139,21 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Acesso Negado");
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void txtKeyKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKeyKeyPressed
+        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            
+        //O getpassword deve chamar uma classe rapper
+        if(checkLogin(txtLogin.getText(), new String (txtKey.getPassword()))){
+            
+            JOptionPane.showMessageDialog(null, "Welcome");
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "Acesso Negado");
+        }
+        }
+    }//GEN-LAST:event_txtKeyKeyPressed
      
 
     /**
